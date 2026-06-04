@@ -5,45 +5,69 @@
 class Lx < Formula
   desc "Git-aware tmux session manager with worktree support (client/server)"
   homepage "https://github.com/sibhod/homebrew-lx"
-  version "1.1.1"
+  version "1.1.2"
   license "ISC"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.1/lx_1.1.1_darwin_amd64.tar.gz"
-      sha256 "2c8b38f04c87dea74ee6a5dbcc890a2b7bd0c968edc1b415c9c5e8d8fa0ca8ae"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_darwin_amd64.tar.gz"
+      sha256 "20491fb372a4fbea6bef8c07173aa5ba901331b5149c0f795bec4b3efaf70fd4"
 
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
         pkgshare.install "deploy/systemd/lx-server.service"
+        # The bundled unit ships the from-source ExecStart (%h/.local/bin/lx-server,
+        # from deploy/scripts/install-server.sh). Rewrite it to the brew-managed
+        # binary so `systemctl --user enable --now lx-server` works for a Homebrew
+        # install. opt_bin is upgrade-stable (the opt/ symlink tracks the linked
+        # version), so a user's copied unit keeps working across `brew upgrade`. (lx-vgv)
+        inreplace "#{pkgshare}/lx-server.service", "%h/.local/bin/lx-server", "#{opt_bin}/lx-server"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.1/lx_1.1.1_darwin_arm64.tar.gz"
-      sha256 "86f439f1d8aa9257467e4c381feacd83e89eede86b544632f25f982a91a34990"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_darwin_arm64.tar.gz"
+      sha256 "dbfdf3f1dc954e241d7b4427188e5496bd84b314f5e0b53a33c900124e5e9c5d"
 
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
         pkgshare.install "deploy/systemd/lx-server.service"
+        # The bundled unit ships the from-source ExecStart (%h/.local/bin/lx-server,
+        # from deploy/scripts/install-server.sh). Rewrite it to the brew-managed
+        # binary so `systemctl --user enable --now lx-server` works for a Homebrew
+        # install. opt_bin is upgrade-stable (the opt/ symlink tracks the linked
+        # version), so a user's copied unit keeps working across `brew upgrade`. (lx-vgv)
+        inreplace "#{pkgshare}/lx-server.service", "%h/.local/bin/lx-server", "#{opt_bin}/lx-server"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.1/lx_1.1.1_linux_amd64.tar.gz"
-      sha256 "254bae86e84fbd80fe080be6dee148124a6c3cee1ac9a6d3169f59f108e54868"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_linux_amd64.tar.gz"
+      sha256 "fed8af06ea3cb9c81e907b905eb6e65f3a3ea4fb73488224c8b2c060804c6628"
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
         pkgshare.install "deploy/systemd/lx-server.service"
+        # The bundled unit ships the from-source ExecStart (%h/.local/bin/lx-server,
+        # from deploy/scripts/install-server.sh). Rewrite it to the brew-managed
+        # binary so `systemctl --user enable --now lx-server` works for a Homebrew
+        # install. opt_bin is upgrade-stable (the opt/ symlink tracks the linked
+        # version), so a user's copied unit keeps working across `brew upgrade`. (lx-vgv)
+        inreplace "#{pkgshare}/lx-server.service", "%h/.local/bin/lx-server", "#{opt_bin}/lx-server"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.1/lx_1.1.1_linux_arm64.tar.gz"
-      sha256 "4505aefbc2373eceb464a7cde5ab081f1aa70646f718fc107b88c55bc26ecec7"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_linux_arm64.tar.gz"
+      sha256 "19f80087bd4b5a71248295aeb12440c0ceb9c8ff565949f4d5f03c6a7ef55f0e"
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
         pkgshare.install "deploy/systemd/lx-server.service"
+        # The bundled unit ships the from-source ExecStart (%h/.local/bin/lx-server,
+        # from deploy/scripts/install-server.sh). Rewrite it to the brew-managed
+        # binary so `systemctl --user enable --now lx-server` works for a Homebrew
+        # install. opt_bin is upgrade-stable (the opt/ symlink tracks the linked
+        # version), so a user's copied unit keeps working across `brew upgrade`. (lx-vgv)
+        inreplace "#{pkgshare}/lx-server.service", "%h/.local/bin/lx-server", "#{opt_bin}/lx-server"
       end
     end
   end
