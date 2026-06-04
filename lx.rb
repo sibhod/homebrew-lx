@@ -5,13 +5,13 @@
 class Lx < Formula
   desc "Git-aware tmux session manager with worktree support (client/server)"
   homepage "https://github.com/sibhod/homebrew-lx"
-  version "1.1.2"
+  version "1.1.3"
   license "ISC"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_darwin_amd64.tar.gz"
-      sha256 "20491fb372a4fbea6bef8c07173aa5ba901331b5149c0f795bec4b3efaf70fd4"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.3/lx_1.1.3_darwin_amd64.tar.gz"
+      sha256 "f8f0ec1b58ff1e1172e1571da63694b088c1e21a0b0da502c15e1593d71af31e"
 
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
@@ -25,8 +25,8 @@ class Lx < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_darwin_arm64.tar.gz"
-      sha256 "dbfdf3f1dc954e241d7b4427188e5496bd84b314f5e0b53a33c900124e5e9c5d"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.3/lx_1.1.3_darwin_arm64.tar.gz"
+      sha256 "9bbb1ee25373d46e0d85ad8e52ed57be6727ff4a200b6c9f516ee7c80e0b397a"
 
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
@@ -43,8 +43,8 @@ class Lx < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_linux_amd64.tar.gz"
-      sha256 "fed8af06ea3cb9c81e907b905eb6e65f3a3ea4fb73488224c8b2c060804c6628"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.3/lx_1.1.3_linux_amd64.tar.gz"
+      sha256 "ad53bbe93caa847bcd39f533eda5ec5198464430deda7e0c2aadcd09a705a01b"
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
         pkgshare.install "deploy/systemd/lx-server.service"
@@ -57,8 +57,8 @@ class Lx < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.2/lx_1.1.2_linux_arm64.tar.gz"
-      sha256 "19f80087bd4b5a71248295aeb12440c0ceb9c8ff565949f4d5f03c6a7ef55f0e"
+      url "https://github.com/sibhod/homebrew-lx/releases/download/v1.1.3/lx_1.1.3_linux_arm64.tar.gz"
+      sha256 "17a2ac731999a6e6c128bba0b526fd8d33f212546fe6694bc4d985b4a71bc5c7"
       define_method(:install) do
         bin.install "lx", "lx-server", "lx-agent-hook"
         pkgshare.install "deploy/systemd/lx-server.service"
